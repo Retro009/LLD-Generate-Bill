@@ -5,7 +5,6 @@ import com.scaler.models.CustomerSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class CustomerSessionRepositoryImpl implements CustomerSessionRepository{
     List<CustomerSession> customerSessions = new ArrayList<>();
@@ -20,6 +19,6 @@ public class CustomerSessionRepositoryImpl implements CustomerSessionRepository{
 
     @Override
     public Optional<CustomerSession> findActiveCustomerSessionByUserId(long userId) {
-        return customerSessions.stream().filter(session -> session.getId() == userId && session.isActive()).findFirst();
+        return customerSessions.stream().filter(session -> session.getUser().getId() == userId && session.isActive()).findFirst();
     }
 }
